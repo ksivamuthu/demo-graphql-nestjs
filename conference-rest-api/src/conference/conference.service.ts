@@ -3,12 +3,15 @@ import { Conference } from './conference.model';
 import { ConferenceDTO } from './dto/create-conference-dto';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Session } from '../session/session.model';
 
 @Injectable()
 export class ConferenceService {
   constructor(
     @InjectRepository(Conference)
     private readonly conferenceRepo: Repository<Conference>,
+    @InjectRepository(Session)
+    private readonly sessionRepo: Repository<Session>,
   ) {}
 
   public async create(confDto: ConferenceDTO): Promise<Conference> {
@@ -36,5 +39,8 @@ export class ConferenceService {
     if (existing) {
       await this.conferenceRepo.remove(existing);
     }
+  }
+  public async sessions(id: number): Promise<Session[]> {
+     return this.sessionRepo.find({where: { conference: id }});
   }
 }

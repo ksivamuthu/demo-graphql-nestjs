@@ -1,4 +1,4 @@
-import { Column, Entity, ObjectID, ObjectIdColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, OneToOne, Index } from 'typeorm';
+import { Column, Entity, ObjectID, ObjectIdColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, OneToOne, Index, JoinColumn } from 'typeorm';
 import { Conference } from '../conference/conference.model';
 import { Speaker } from '../speaker/speaker.model';
 
@@ -14,9 +14,11 @@ export class Session {
     @Column() public readonly keywords: string[];
 
     @ManyToOne(type => Conference, conference => conference.sessions)
+    @JoinColumn({name: 'conference'})
     public readonly conference: Conference;
 
     @OneToOne(type => Speaker, speaker => speaker.session)
+    @JoinColumn({name: 'speaker'})
     public readonly speaker: Speaker;
 }
 

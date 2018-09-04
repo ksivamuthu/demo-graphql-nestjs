@@ -5,9 +5,11 @@ import { AppService } from './app.service';
 import { ConferenceModule } from './conference/conference.module';
 import { SessionModule } from './session/session.module';
 import { SpeakerModule } from './speaker/speaker.module';
+import { ApiRoutes } from './routes';
+import { RouterModule } from 'nest-router';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(), ConferenceModule, SessionModule, SpeakerModule],
+  imports: [RouterModule.forRoutes(ApiRoutes), TypeOrmModule.forRoot(), ConferenceModule, SessionModule, SpeakerModule],
   controllers: [AppController],
   providers: [AppService],
 })

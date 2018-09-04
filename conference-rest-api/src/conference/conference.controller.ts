@@ -2,7 +2,7 @@ import { Controller, Get, Param, ParseIntPipe, Post, Put, Delete, Body } from '@
 import { ConferenceService } from './conference.service';
 import { ConferenceDTO } from './dto/create-conference-dto';
 
-@Controller('conferences')
+@Controller()
 export class ConferenceController {
 
     constructor(private readonly conferenceService: ConferenceService) {}
@@ -30,5 +30,10 @@ export class ConferenceController {
     @Delete(':id')
     public async remove(@Param('id', new ParseIntPipe())id: number) {
         return this.conferenceService.delete(id);
+    }
+
+    @Get(':id/sessions')
+    public async findSessionsById(@Param('id', new ParseIntPipe())id: number) {
+        return this.conferenceService.sessions(id);
     }
 }

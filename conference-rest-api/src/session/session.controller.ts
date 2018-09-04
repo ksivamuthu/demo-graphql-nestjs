@@ -2,7 +2,7 @@ import { Controller, Get, Param, ParseIntPipe, Post, Body, Put, Delete } from '@
 import { SessionService } from './session.service';
 import { Session } from './session.model';
 
-@Controller('sessions')
+@Controller()
 export class SessionController {
     constructor(private readonly sessionService: SessionService) {}
 

@@ -2,7 +2,7 @@ import { Controller, Get, Param, ParseIntPipe, Post, Body, Put, Delete } from '@
 import { Speaker } from './speaker.model';
 import { SpeakerService } from './speaker.service';
 
-@Controller('speakers')
+@Controller()
 export class SpeakerController {
     constructor(private readonly speakerService: SpeakerService) {}
 
