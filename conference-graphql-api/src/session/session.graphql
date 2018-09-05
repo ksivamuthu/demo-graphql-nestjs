@@ -1,0 +1,48 @@
+type Query {
+    sessions: [Session]!
+    sessionsByCategory(category: Category): [Session]!
+    session(id: Int): Session!
+}
+
+type Mutation {
+    createSession(session: SessionInput): Session
+}
+
+type Session {
+    id: Int!
+    title: String!
+    abstract: String!
+    level: TalkLevel
+    category: Category
+    keywords: String
+    speaker: Speaker!
+}
+
+input SessionInput {
+    title: String!
+    abstract: String!
+    level: TalkLevel
+    category: Category
+    keywords: String
+    speaker: Int!
+    conference: Int!
+}
+
+enum TalkLevel {
+    Beginner,
+    Intermediate,
+    Advanced,
+    Expert,
+}
+
+enum Category {
+    GeneralDiscussion,
+    ClientDevelopment,
+    WebDevelopment,
+    DatabaseDevelopment,
+    CloudDevelopment,
+    Design,
+    ProfessionalDevelopment,
+    CareerAdvancement,
+    ITTopics,
+}

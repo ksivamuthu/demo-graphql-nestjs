@@ -1,0 +1,24 @@
+type Query {
+    conferences: [Conference]!
+    conference(id: Int): Conference!
+}
+
+type Mutation {
+    createConference(conference: ConferenceInput): Conference
+}
+
+type Conference {
+    id: Int!
+    name: String!
+    year: Int!
+    websiteUrl: String!
+    location: String!
+    sessions: [Session]!
+}
+
+input ConferenceInput {
+    name: String!
+    year: Int!
+    websiteUrl: String!
+    location: String!
+}

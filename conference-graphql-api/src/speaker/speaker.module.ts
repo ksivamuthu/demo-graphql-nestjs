@@ -1,12 +1,11 @@
 import { Module } from '@nestjs/common';
-import { SpeakerController } from './speaker.controller';
 import { SpeakerService } from './speaker.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Speaker } from './speaker.model';
+import { SpeakerResolver } from './speaker.resolver';
 
 @Module({
     imports: [TypeOrmModule.forFeature([Speaker])],
-    controllers: [SpeakerController],
-    providers: [SpeakerService],
+    providers: [SpeakerService, SpeakerResolver],
 })
 export class SpeakerModule {}

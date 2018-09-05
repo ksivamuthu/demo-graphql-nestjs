@@ -7,9 +7,20 @@ import { SessionModule } from './session/session.module';
 import { SpeakerModule } from './speaker/speaker.module';
 import { ApiRoutes } from './routes';
 import { RouterModule } from 'nest-router';
+import { GraphQLModule } from '@nestjs/graphql';
 
 @Module({
-  imports: [RouterModule.forRoutes(ApiRoutes), TypeOrmModule.forRoot(), ConferenceModule, SessionModule, SpeakerModule],
+  imports: [
+    GraphQLModule.forRoot({
+      typePaths: ['./**/*.graphql'],
+      installSubscriptionHandlers: true
+    }),
+    RouterModule.forRoutes(ApiRoutes),
+    TypeOrmModule.forRoot(),
+    ConferenceModule,
+    SessionModule,
+    SpeakerModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

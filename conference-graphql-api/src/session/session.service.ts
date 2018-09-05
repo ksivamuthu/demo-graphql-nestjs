@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Session } from './session.model';
+import { Session, Category } from './session.model';
+import { SessionDTO } from './dto/create-session-dto';
 
 @Injectable()
 export class SessionService {
@@ -10,7 +11,7 @@ export class SessionService {
     private readonly sessionRepo: Repository<Session>,
   ) {}
 
-  public async create(sessionDto: Session): Promise<Session> {
+  public async create(sessionDto: SessionDTO): Promise<Session> {
     const session = { ...new Session(), ...sessionDto };
     return this.sessionRepo.save(session);
   }
@@ -23,10 +24,14 @@ export class SessionService {
     return this.sessionRepo.findOneOrFail({ where: { id } });
   }
 
+  public async findByCategory(category: Category): Promise<Session[]> {
+    return this.sessionRepo.find({ where: { category: category } });
+  }
+
   public async update(id: number, session: Session) {
     const existing = await this.sessionRepo.findOneOrFail({ where: { id } });
     if (existing) {
-      await this.sessionRepo.save({ ...existing, ...Session });
+      await this.sessionRepo.save({ ...existing, ...session });
     }
   }
 

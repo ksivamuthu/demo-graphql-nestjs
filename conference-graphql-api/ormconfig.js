@@ -1,7 +1,10 @@
 module.exports = {
-    'type': 'mongodb',
+    'type': 'mysql',
     'host': 'localhost',
-    'database': 'dev-conferences',
+    'port': 3306,
+    'username': 'root',
+    'password': 'password',
+    'database': 'devconferences',
     "entities": ["src/**/**.model{.ts,.js}"],
     "synchronize": true
 };
