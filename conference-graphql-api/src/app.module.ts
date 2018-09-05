@@ -13,7 +13,10 @@ import { GraphQLModule } from '@nestjs/graphql';
   imports: [
     GraphQLModule.forRoot({
       typePaths: ['./**/*.graphql'],
-      installSubscriptionHandlers: true
+      installSubscriptionHandlers: true,
+      engine: {
+        apiKey: "service:conference-service:oKVmAPezK_DvGTO1vyvD-w"
+      }
     }),
     RouterModule.forRoutes(ApiRoutes),
     TypeOrmModule.forRoot(),
