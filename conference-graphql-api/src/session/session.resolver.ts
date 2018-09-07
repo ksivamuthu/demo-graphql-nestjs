@@ -1,8 +1,15 @@
 import { SessionService } from './session.service';
 import { Session, Category } from './session.model';
-import { Resolver, Query, Args, ResolveProperty, Parent, Mutation } from '@nestjs/graphql';
+import { Resolver, Query, Args, ResolveProperty, Parent, Mutation, Subscription } from '@nestjs/graphql';
 import { SpeakerService } from '../speaker/speaker.service';
 import { SessionDTO } from './dto/create-session-dto';
+import { PubSub } from 'graphql-subscriptions';
+
+const pubSub = new PubSub();
+
+pubSub.subscribe('sessionCreated', (args) => {
+    console.log(args);
+});
 
 @Resolver('Session')
 export class SessionResolver {
@@ -31,6 +38,15 @@ export class SessionResolver {
 
     @Mutation('createSession') 
     public async createSession(@Args('session') session: SessionDTO) {
-        return this.sessionService.create(session);
+        var result = await this.sessionService.create(session);
+        pubSub.publish('sessionCreated', { sessionCreated: result });
+        return result;
+    }
+
+    @Subscription('sessionCreated')
+    public sessionCreated() {
+      return {
+        subscribe: () => pubSub.asyncIterator('sessionCreated')
+      };
     }
 }

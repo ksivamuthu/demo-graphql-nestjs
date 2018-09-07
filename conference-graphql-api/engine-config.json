@@ -1,0 +1,16 @@
+{
+  "apiKey": "service:demo-conference-service:9Zz5mTcdJqNkEaZeZN7Mqw",
+  "origins": [
+    {
+      "http": {
+        "url": "http://localhost:3000/graphql"
+      }
+    }
+  ],
+  "frontends": [
+    {
+      "port": 4000,
+      "endpoints": ["/graphql"]
+    }
+  ]
+}

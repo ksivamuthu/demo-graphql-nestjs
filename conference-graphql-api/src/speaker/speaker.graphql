@@ -7,7 +7,7 @@ type Mutation {
     createSpeaker(speaker: SpeakerInput): Speaker
 }
 
-type Speaker {
+type Speaker @cacheControl(maxAge: 240) {
     id: Int!
     name: String!
     bio: String!

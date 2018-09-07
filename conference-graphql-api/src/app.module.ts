@@ -7,15 +7,17 @@ import { SessionModule } from './session/session.module';
 import { SpeakerModule } from './speaker/speaker.module';
 import { ApiRoutes } from './routes';
 import { RouterModule } from 'nest-router';
-import { GraphQLModule } from '@nestjs/graphql';
+import { GraphQLModule, GqlModuleOptions } from '@nestjs/graphql';
 
 @Module({
   imports: [
     GraphQLModule.forRoot({
       typePaths: ['./**/*.graphql'],
       installSubscriptionHandlers: true,
+      tracing: true,
+      cacheControl: true,
       engine: {
-        apiKey: "service:conference-service:oKVmAPezK_DvGTO1vyvD-w"
+        apiKey: 'service:demo-conference-service:9Zz5mTcdJqNkEaZeZN7Mqw'
       }
     }),
     RouterModule.forRoutes(ApiRoutes),
@@ -27,4 +29,5 @@ import { GraphQLModule } from '@nestjs/graphql';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+}
