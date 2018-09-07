@@ -14,8 +14,8 @@ import { GraphQLModule, GqlModuleOptions } from '@nestjs/graphql';
     GraphQLModule.forRoot({
       typePaths: ['./**/*.graphql'],
       installSubscriptionHandlers: true,
-      tracing: true,
-      cacheControl: true,
+      tracing: false,
+      cacheControl: false,
       engine: {
         apiKey: 'service:demo-conference-service:9Zz5mTcdJqNkEaZeZN7Mqw'
       }

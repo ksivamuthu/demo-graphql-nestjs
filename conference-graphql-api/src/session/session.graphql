@@ -1,15 +1,15 @@
 type Query {
     sessions: [Session]!
-    sessionsByCategory(category: Category): [Session]!
-    session(id: Int): Session!
+    sessionsByCategory(category: Category!): [Session]!
+    session(id: Int!): Session!
 }
 
 type Mutation {
-    createSession(session: SessionInput): Session
+    starSession(id: Int!): Session
 }
 
 type Subscription {
-    sessionCreated: Session
+    sessionStarred: Session
 }
 
 type Session @cacheControl(maxAge: 240){
@@ -20,6 +20,7 @@ type Session @cacheControl(maxAge: 240){
     category: Category
     keywords: String
     speaker: Speaker!
+    stars: Int!
 }
 
 input SessionInput {

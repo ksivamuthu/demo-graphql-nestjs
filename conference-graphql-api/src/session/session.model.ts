@@ -28,6 +28,7 @@ export class Session {
     @Column('enum', {enum: TalkLevel}) public readonly level: TalkLevel;
     @Column('enum', {enum: Category}) public readonly category: Category;
     @Column() public readonly keywords: string;
+    @Column({default: 0}) public readonly stars: number;
 
     @ManyToOne(() => Conference, conference => conference.sessions)
     @JoinColumn()

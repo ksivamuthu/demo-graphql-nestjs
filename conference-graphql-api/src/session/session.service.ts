@@ -31,7 +31,15 @@ export class SessionService {
   public async update(id: number, session: Session) {
     const existing = await this.sessionRepo.findOneOrFail({ where: { id } });
     if (existing) {
-      await this.sessionRepo.save({ ...existing, ...session });
+      return await this.sessionRepo.save({ ...existing, ...session });
+    }
+  }
+
+  public async incrementStars(id: number) {
+    const existing = await this.sessionRepo.findOneOrFail({ where: { id } });
+    if(existing) {
+       const objToSave = {...existing, ...{ stars: existing.stars + 1 }};
+       return await this.sessionRepo.save(objToSave);
     }
   }
 

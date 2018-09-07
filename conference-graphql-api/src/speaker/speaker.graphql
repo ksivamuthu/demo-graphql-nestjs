@@ -18,6 +18,7 @@ type Speaker @cacheControl(maxAge: 240) {
     blog: String
     website: String
     twitter: String
+    imageUrl: String
 }
 
 input SpeakerInput {

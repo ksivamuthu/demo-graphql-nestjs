@@ -36,17 +36,17 @@ export class SessionResolver {
         return this.speakerService.findById(session.speakerId);
     }
 
-    @Mutation('createSession') 
-    public async createSession(@Args('session') session: SessionDTO) {
-        var result = await this.sessionService.create(session);
-        pubSub.publish('sessionCreated', { sessionCreated: result });
+    @Mutation('starSession') 
+    public async createSession(@Args('id') id: number) {
+        var result = await this.sessionService.incrementStars(id);
+        pubSub.publish('sessionStarred', { sessionStarred: result });
         return result;
     }
 
-    @Subscription('sessionCreated')
+    @Subscription('sessionStarred')
     public sessionCreated() {
       return {
-        subscribe: () => pubSub.asyncIterator('sessionCreated')
+        subscribe: () => pubSub.asyncIterator('sessionStarred')
       };
     }
 }
