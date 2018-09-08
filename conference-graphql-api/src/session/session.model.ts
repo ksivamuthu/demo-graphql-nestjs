@@ -24,7 +24,7 @@ export enum TalkLevel {
 export class Session {
     @PrimaryGeneratedColumn() public readonly id: number;
     @Column() public readonly title: string;
-    @Column() public readonly abstract: string;
+    @Column({length: 5000}) public readonly abstract: string;
     @Column('enum', {enum: TalkLevel}) public readonly level: TalkLevel;
     @Column('enum', {enum: Category}) public readonly category: Category;
     @Column() public readonly keywords: string;
