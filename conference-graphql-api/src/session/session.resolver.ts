@@ -7,10 +7,6 @@ import { PubSub } from 'graphql-subscriptions';
 
 const pubSub = new PubSub();
 
-pubSub.subscribe('sessionCreated', (args) => {
-    console.log(args);
-});
-
 @Resolver('Session')
 export class SessionResolver {
     constructor(private readonly sessionService: SessionService,
@@ -37,10 +33,15 @@ export class SessionResolver {
     }
 
     @Mutation('starSession') 
-    public async createSession(@Args('id') id: number) {
+    public async starSession(@Args('id') id: number) {
         var result = await this.sessionService.incrementStars(id);
         pubSub.publish('sessionStarred', { sessionStarred: result });
         return result;
+    }
+    
+    @Mutation('createSession') 
+    public async createSession(@Args('session') session: SessionDTO) {
+        return this.sessionService.create(session);
     }
 
     @Subscription('sessionStarred')

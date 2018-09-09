@@ -1,26 +1,18 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { GraphQLModule } from '@nestjs/graphql';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConferenceModule } from './conference/conference.module';
 import { SessionModule } from './session/session.module';
 import { SpeakerModule } from './speaker/speaker.module';
-import { ApiRoutes } from './routes';
-import { RouterModule } from 'nest-router';
-import { GraphQLModule, GqlModuleOptions } from '@nestjs/graphql';
 
 @Module({
   imports: [
     GraphQLModule.forRoot({
       typePaths: ['./**/*.graphql'],
-      installSubscriptionHandlers: true,
-      tracing: false,
-      cacheControl: false,
-      engine: {
-        apiKey: 'service:demo-conference-service:9Zz5mTcdJqNkEaZeZN7Mqw'
-      }
+      installSubscriptionHandlers: true
     }),
-    RouterModule.forRoutes(ApiRoutes),
     TypeOrmModule.forRoot(),
     ConferenceModule,
     SessionModule,
@@ -29,5 +21,4 @@ import { GraphQLModule, GqlModuleOptions } from '@nestjs/graphql';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {
-}
+export class AppModule { }
