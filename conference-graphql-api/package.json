@@ -23,6 +23,7 @@
     "@nestjs/typeorm": "~5.2.0",
     "apollo-engine": "~1.1.2",
     "apollo-server-express": "~2.0.6",
+    "dataloader": "^1.4.0",
     "fastify-formbody": "^2.0.0",
     "graphql": "^14.0.0",
     "graphql-subscriptions": "^0.5.8",

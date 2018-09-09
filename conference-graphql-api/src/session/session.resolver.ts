@@ -1,19 +1,20 @@
 import { SessionService } from './session.service';
 import { Session, Category } from './session.model';
-import { Resolver, Query, Args, ResolveProperty, Parent, Mutation, Subscription } from '@nestjs/graphql';
+import { Resolver, Query, Args, ResolveProperty, Parent, Mutation, Subscription, Context } from '@nestjs/graphql';
 import { SpeakerService } from '../speaker/speaker.service';
 import { SessionDTO } from './dto/create-session-dto';
 import { PubSub } from 'graphql-subscriptions';
+import * as DataLoader from 'dataloader';
 
 const pubSub = new PubSub();
-
 @Resolver('Session')
 export class SessionResolver {
+
     constructor(private readonly sessionService: SessionService,
-                private readonly speakerService: SpeakerService) {}
+        private readonly speakerService: SpeakerService) {}
 
     @Query('sessions')
-    public async findAll():  Promise<Session[]> {
+    public async findAll(): Promise<Session[]> {
         return this.sessionService.findAll();
     }
 

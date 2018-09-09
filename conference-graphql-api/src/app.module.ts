@@ -11,7 +11,7 @@ import { SpeakerModule } from './speaker/speaker.module';
   imports: [
     GraphQLModule.forRoot({
       typePaths: ['./**/*.graphql'],
-      installSubscriptionHandlers: true
+      installSubscriptionHandlers: true      
     }),
     TypeOrmModule.forRoot(),
     ConferenceModule,

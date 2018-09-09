@@ -24,6 +24,11 @@ export class SpeakerService {
     return this.speakerRepo.findOneOrFail({ where: { id } });
   }
 
+  public async findByIds(ids: number[]): Promise<Speaker[]> {
+    console.log(`Finding Speaker with ${ids}`);
+    return this.speakerRepo.findByIds(ids);
+  }
+  
   public async update(id: number, speaker: Speaker) {
     const existing = await this.speakerRepo.findOneOrFail({ where: { id } });
     if (existing) {

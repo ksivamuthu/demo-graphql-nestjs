@@ -8,6 +8,6 @@ import { Speaker } from '../speaker/speaker.model';
 
 @Module({
     imports: [TypeOrmModule.forFeature([Session, Speaker])],
-    providers: [SessionService, SpeakerService, SessionResolver],
+    providers: [SessionService, SpeakerService, SessionResolver]
 })
 export class SessionModule {}
