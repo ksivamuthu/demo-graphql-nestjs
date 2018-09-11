@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Speaker } from './speaker.model';
+import { SpeakerDTO } from './dto/create-speaker-dto';
 
 @Injectable()
 export class SpeakerService {
@@ -10,7 +11,7 @@ export class SpeakerService {
     private readonly speakerRepo: Repository<Speaker>,
   ) {}
 
-  public async create(speakerDto: Speaker): Promise<Speaker> {
+  public async create(speakerDto: SpeakerDTO): Promise<Speaker> {
     const speaker = { ...new Speaker(), ...speakerDto };
     return this.speakerRepo.save(speaker);
   }
@@ -23,7 +24,12 @@ export class SpeakerService {
     return this.speakerRepo.findOneOrFail({ where: { id } });
   }
 
-  public async update(id: number, speaker: Speaker) {
+  public async findByIds(ids: number[]): Promise<Speaker[]> {
+    console.log(`Finding Speaker with ${ids}`);
+    return this.speakerRepo.findByIds(ids);
+  }
+  
+  public async update(id: number, speaker: SpeakerDTO) {
     const existing = await this.speakerRepo.findOneOrFail({ where: { id } });
     if (existing) {
       await this.speakerRepo.save({ ...existing, ...Speaker });

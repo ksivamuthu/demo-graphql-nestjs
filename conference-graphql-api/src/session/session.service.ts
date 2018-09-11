@@ -28,7 +28,7 @@ export class SessionService {
     return this.sessionRepo.find({ where: { category: category } });
   }
 
-  public async update(id: number, session: Session) {
+  public async update(id: number, session: SessionDTO) {
     const existing = await this.sessionRepo.findOneOrFail({ where: { id } });
     if (existing) {
       return await this.sessionRepo.save({ ...existing, ...session });

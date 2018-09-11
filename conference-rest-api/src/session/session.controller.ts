@@ -1,8 +1,15 @@
-import { Controller, Get, Param, ParseIntPipe, Post, Body, Put, Delete } from '@nestjs/common';
+import { Controller, Get, Param, ParseIntPipe, Post, Body, Put, Delete, UseInterceptors, UseGuards } from '@nestjs/common';
 import { SessionService } from './session.service';
-import { Session } from './session.model';
+import { ApiUseTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { SessionDTO } from './dto/create-session-dto';
+import { LoggingInterceptor } from '../common/interceptors/logging.interceptor';
+import { AuthGuard } from '../common/guards/auth.guard';
+import { RoleGuard } from '../common/guards/role.guard';
 
 @Controller()
+@ApiUseTags('sessions')
+@UseGuards(AuthGuard)
+@UseInterceptors(LoggingInterceptor)
 export class SessionController {
     constructor(private readonly sessionService: SessionService) {}
 
@@ -17,16 +24,19 @@ export class SessionController {
     }
 
     @Post()
-    public async create(@Body() sessionDto: Session) {
+    @UseGuards(RoleGuard)
+    public async create(@Body() sessionDto: SessionDTO) {
         return this.sessionService.create(sessionDto);
     }
 
     @Put(':id')
-    public async update(@Param('id', new ParseIntPipe())id: number, @Body() sessionDto: Session) {
+    @UseGuards(RoleGuard)
+    public async update(@Param('id', new ParseIntPipe())id: number, @Body() sessionDto: SessionDTO) {
         return this.sessionService.update(id, sessionDto);
     }
 
     @Delete(':id')
+    @UseGuards(RoleGuard)
     public async remove(@Param('id', new ParseIntPipe())id: number) {
         return this.sessionService.delete(id);
     }
