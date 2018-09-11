@@ -24,4 +24,5 @@ export class Session {
     level: TalkLevel;
     category: Category;
     keywords: string;
+    stars: number;
 }
