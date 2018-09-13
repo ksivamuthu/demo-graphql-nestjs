@@ -9,14 +9,20 @@ import { WebSocketLink } from 'apollo-link-ws';
 import { split } from 'apollo-link';
 import { getMainDefinition } from 'apollo-utilities';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
+// Add an icon to the library for convenient access in other components
+library.add(faStar);
 @NgModule({
   declarations: [AppComponent, ConferenceComponent],
   imports: [
     BrowserModule,
     ApolloModule,
     HttpLinkModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

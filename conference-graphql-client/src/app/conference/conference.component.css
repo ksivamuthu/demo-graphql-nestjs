@@ -1,0 +1,15 @@
+.card-sessions {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.card-body {
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+span.star {
+    margin-left: 15px;
+}

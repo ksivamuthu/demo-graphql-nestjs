@@ -3,20 +3,23 @@
   <p>{{conf.location}}</p>
   <h5>Sessions</h5>
   <div *ngFor="let session of conf.sessions">
-    <div class="card" style="width: 100%; margin-top: 10px">
-      <div class="card-body row">
-        <div class="col-sm-10">
-          <div class="row">
-            <h5 class="card-title">{{session.title}}</h5>
-            <p class="abstract">{{session.abstract}}</p>
+    <div class="card card-sessions">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-10">
+            <div class="row">
+              <h5 class="card-title">{{session.title}}</h5>
+              <p class="abstract">{{session.abstract}}</p>
+            </div>
           </div>
-          <div>
-            <p>{{session.stars}}<i class="fas fa-star"></i></p>
+          <div class="col-sm-2">
+            <img width="120" height="120" src="{{session.speaker.imageUrl}}" />
+            <p>{{session.speaker.name}}</p>
           </div>
         </div>
-        <div class="col-sm-2">
-          <img width="120" height="120" src="{{session.speaker.imageUrl}}" />
-          <p>{{session.speaker.name}}</p>
+        <div class="row">
+          <fa-icon ng [icon]="['fas', 'star']" (click)="starSession(session.id)"></fa-icon>        
+          <span class="star" *ngIf="session.stars > 0">{{session.stars}}</span>      
         </div>
       </div>
     </div>
