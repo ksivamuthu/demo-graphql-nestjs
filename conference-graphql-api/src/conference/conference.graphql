@@ -7,11 +7,11 @@ type Mutation {
     createConference(conference: ConferenceInput): Conference
 }
 
-type Conference @cacheControl(maxAge: 240){
+type Conference {
     id: Int!
     name: String!
     year: Int!
-    websiteUrl: String!
+    websiteUrl: String
     location: String!
     sessions: [Session]!
 }

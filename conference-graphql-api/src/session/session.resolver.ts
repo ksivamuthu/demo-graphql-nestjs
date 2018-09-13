@@ -46,7 +46,7 @@ export class SessionResolver {
     }
 
     @Subscription('sessionStarred')
-    public sessionCreated() {
+    public sessionStarred() {
       return {
         subscribe: () => pubSub.asyncIterator('sessionStarred')
       };

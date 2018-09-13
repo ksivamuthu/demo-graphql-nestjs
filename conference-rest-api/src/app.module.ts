@@ -9,7 +9,13 @@ import { ApiRoutes } from './routes';
 import { RouterModule } from 'nest-router';
 
 @Module({
-  imports: [RouterModule.forRoutes(ApiRoutes), TypeOrmModule.forRoot(), ConferenceModule, SessionModule, SpeakerModule],
+  imports: [
+    RouterModule.forRoutes(ApiRoutes), 
+    TypeOrmModule.forRoot(), 
+    ConferenceModule,
+    SessionModule,
+    SpeakerModule
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

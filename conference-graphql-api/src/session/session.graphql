@@ -21,7 +21,7 @@ type Session @cacheControl(maxAge: 240){
     category: Category
     keywords: String
     speaker: Speaker!
-    stars: Int!
+    stars: Int
 }
 
 input SessionInput {
