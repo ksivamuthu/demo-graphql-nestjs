@@ -14,7 +14,8 @@ export class SessionResolver {
         private readonly speakerService: SpeakerService) {}
 
     @Query('sessions')
-    public async findAll(): Promise<Session[]> {
+    public async findAll(@Context() ctx): Promise<Session[]> {
+        ctx.dataloader = new DataLoader(keys => this.speakerService.findByIds(keys as number[])); 
         return this.sessionService.findAll();
     }
 
@@ -29,8 +30,10 @@ export class SessionResolver {
     }
 
     @ResolveProperty('speaker')
-    public async sessions(@Parent() session: Session) {
+    public async sessions(@Context() ctx, @Parent() session: Session) {
+        console.log(`Retrieving speaker with id: ${session.speakerId}`);
         return this.speakerService.findById(session.speakerId);
+        // return ctx.dataloader.load(session.speakerId);
     }
 
     @Mutation('starSession') 

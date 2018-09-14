@@ -6,12 +6,18 @@ import { AppService } from './app.service';
 import { ConferenceModule } from './conference/conference.module';
 import { SessionModule } from './session/session.module';
 import { SpeakerModule } from './speaker/speaker.module';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
+console.log(process.env.ENGINE_API_KEY);
 @Module({
   imports: [
     GraphQLModule.forRoot({
       typePaths: ['./**/*.graphql'],
-      installSubscriptionHandlers: true      
+      installSubscriptionHandlers: true,
+      engine: {
+        apiKey: process.env.ENGINE_API_KEY
+      }      
     }),
     TypeOrmModule.forRoot(),
     ConferenceModule,

@@ -21,6 +21,7 @@ export class SpeakerService {
   }
 
   public async findById(id: number): Promise<Speaker> {
+    console.log(`Finding Speaker with ${id}`);
     return this.speakerRepo.findOneOrFail({ where: { id } });
   }
 
