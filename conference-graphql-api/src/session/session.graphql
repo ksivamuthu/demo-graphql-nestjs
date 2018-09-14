@@ -5,7 +5,7 @@ type Query {
 }
 
 type Mutation {
-    createSession(session: SessionInput!): Session
+    createSession(session: SessionInput): Session
     starSession(id: Int!): Session
 }
 
