@@ -16,6 +16,16 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Current Database: `devconferences`
+--
+
+/*!40000 DROP DATABASE IF EXISTS `devconferences`*/;
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `devconferences` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+USE `devconferences`;
+
+--
 -- Table structure for table `conference`
 --
 
@@ -124,4 +134,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-09-17  9:32:30
+-- Dump completed on 2018-09-17  9:55:44
