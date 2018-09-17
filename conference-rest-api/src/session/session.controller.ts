@@ -8,7 +8,6 @@ import { RoleGuard } from '../common/guards/role.guard';
 
 @Controller()
 @ApiUseTags('sessions')
-@UseGuards(AuthGuard)
 @UseInterceptors(LoggingInterceptor)
 export class SessionController {
     constructor(private readonly sessionService: SessionService) {}
