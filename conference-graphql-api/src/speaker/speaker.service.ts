@@ -33,7 +33,7 @@ export class SpeakerService {
   public async update(id: number, speaker: Speaker) {
     const existing = await this.speakerRepo.findOneOrFail({ where: { id } });
     if (existing) {
-      await this.speakerRepo.save({ ...existing, ...Speaker });
+      await this.speakerRepo.save({ ...existing, ...speaker });
     }
   }
 
