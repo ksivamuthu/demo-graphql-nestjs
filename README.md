@@ -1,6 +1,6 @@
 # GraphQL NestJS Demo
 
-This is the demo of the talk about [GraphQL & NestJS - Forget the REST](https://graphql-nestjs.now.sh/#/) I did in Atlanta Code Camp 2018.
+This is the demo of the talk about [GraphQL & NestJS - Forget the REST](https://graphql-nestjs.now.sh/#/) I did in Atlanta Code Camp 2018 / TampaCC 2018.
 
 ## Table of contents
 
