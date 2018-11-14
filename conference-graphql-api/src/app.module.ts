@@ -17,7 +17,8 @@ console.log(process.env.ENGINE_API_KEY);
       installSubscriptionHandlers: true,
       engine: {
         apiKey: process.env.ENGINE_API_KEY
-      }      
+      },
+      context: ({ req }) => ({ req })      
     }),
     TypeOrmModule.forRoot(),
     ConferenceModule,

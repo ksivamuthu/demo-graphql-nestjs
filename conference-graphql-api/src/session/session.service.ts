@@ -3,7 +3,6 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Session, Category } from './session.model';
 import { SessionDTO } from './dto/create-session-dto';
-import { RoleGuard } from 'common/guards/role.guard';
 
 @Injectable()
 export class SessionService {
@@ -29,7 +28,6 @@ export class SessionService {
     return this.sessionRepo.find({ where: { category: category } });
   }
 
-  @UseGuards(RoleGuard)
   public async update(id: number, session: SessionDTO) {
     const existing = await this.sessionRepo.findOneOrFail({ where: { id } });
     if (existing) {
@@ -45,7 +43,6 @@ export class SessionService {
     }
   }
 
-  @UseGuards(RoleGuard)
   public async delete(id: number) {
     const existing = await this.sessionRepo.findOneOrFail({ where: { id } });
     if (existing) {

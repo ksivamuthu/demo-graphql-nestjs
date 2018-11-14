@@ -21,12 +21,12 @@ export class SpeakerService {
   }
 
   public async findById(id: number): Promise<Speaker> {
-    console.log(`Finding Speaker with ${id}`);
+    console.log(`Querying Speaker with ${id}`);
     return this.speakerRepo.findOneOrFail({ where: { id } });
   }
 
   public async findByIds(ids: number[]): Promise<Speaker[]> {
-    console.log(`Finding Speaker with ${ids}`);
+    console.log(`Querying Speaker with ${ids}`);
     return this.speakerRepo.findByIds(ids);
   }
   

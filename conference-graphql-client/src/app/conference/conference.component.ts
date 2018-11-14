@@ -1,15 +1,15 @@
-import { Component, OnInit } from "@angular/core";
-import { map } from "rxjs/operators";
-import { Observable } from "rxjs";
-import { Conference } from "./conference.model";
-import gql from "graphql-tag";
-import { Apollo, QueryRef, Query } from "apollo-angular";
-import * as _ from "lodash";
+import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { Conference } from './conference.model';
+import gql from 'graphql-tag';
+import { Apollo, QueryRef, Query } from 'apollo-angular';
+import * as _ from 'lodash';
 
 @Component({
-  selector: "app-conference",
-  templateUrl: "./conference.component.html",
-  styleUrls: ["./conference.component.css"]
+  selector: 'app-conference',
+  templateUrl: './conference.component.html',
+  styleUrls: ['./conference.component.css']
 })
 export class ConferenceComponent implements OnInit {
   conferenceQuery: QueryRef<any>;

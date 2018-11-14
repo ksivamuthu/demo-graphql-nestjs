@@ -7,10 +7,12 @@ export class AnyExceptionFilter implements ExceptionFilter {
     const response = ctx.getResponse();
     const request = ctx.getRequest();
 
-    let status = 500;
+    let status = exception.status || 500;
     if (exception.name === 'EntityNotFound') {
       status = 404;
     }
+
+    console.log(exception);
 
     response
       .status(status)

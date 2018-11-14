@@ -5,6 +5,8 @@ import { SpeakerService } from '../speaker/speaker.service';
 import { SessionDTO } from './dto/create-session-dto';
 import { PubSub } from 'graphql-subscriptions';
 import * as DataLoader from 'dataloader';
+import { RoleGuard } from '../common/guards/role.guard';
+import { UseGuards } from '@nestjs/common';
 
 const pubSub = new PubSub();
 @Resolver('Session')
@@ -44,6 +46,7 @@ export class SessionResolver {
     }
     
     @Mutation('createSession') 
+    @UseGuards(RoleGuard)
     public async createSession(@Args('session') session: SessionDTO) {
         return this.sessionService.create(session);
     }
