@@ -34,7 +34,7 @@
     "core-js": "^2.5.4",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.9.2",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.19",
     "rxjs": "^6.0.0",
     "subscriptions-transport-ws": "^0.9.14",
     "zone.js": "~0.8.26"
