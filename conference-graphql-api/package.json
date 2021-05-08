@@ -33,7 +33,7 @@
     "nest-router": "^1.0.6",
     "rxjs": "^6.0.0",
     "subscriptions-transport-ws": "^0.9.14",
-    "typeorm": "~0.2.7",
+    "typeorm": "~0.2.25",
     "typescript": "^3.0.3"
   },
   "devDependencies": {
